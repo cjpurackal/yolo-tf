@@ -11,9 +11,9 @@ import cv2
 def get_data(config, root_dir="/dataset/"):
 
 	instance_count = 0
-	x_batch = np.zeros([config["BATCH_SIZE"], config["IMAGE_W"], config["IMAGE_H"], 3])
+	x_batch = np.zeros([config["BATCH_SIZE"], config["IMAGE_W"], config["IMAGE_H"], 3], np.float32)
 	anchors = [Bbox(0, 0, config["ANCHORS"][2*i], config["ANCHORS"][2*i + 1]) for i in range(len(config["ANCHORS"])/2)]
-	y_batch = np.zeros([config["BATCH_SIZE"], config["GRID_W"], config["GRID_H"], config["BOX"], 4+1+config["CLASS"]])
+	y_batch = np.zeros([config["BATCH_SIZE"], config["GRID_W"], config["GRID_H"], config["BOX"], 4+1+config["CLASS"]], np.float32)
 	max_iou = -1
 	best_prior = -1
 
@@ -62,6 +62,7 @@ def get_data(config, root_dir="/dataset/"):
 			x_batch[instance_count] = image
 
 		instance_count += 1
+
 	return x_batch, y_batch
 
 

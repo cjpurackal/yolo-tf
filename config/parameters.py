@@ -13,7 +13,7 @@ NO_OBJECT_SCALE  = 1.0
 OBJECT_SCALE     = 5.0
 COORD_SCALE      = 1.0
 CLASS_SCALE      = 1.0
-BATCH_SIZE       = 1
+BATCH_SIZE       = 2
 WARM_UP_BATCHES  = 0
 TRUE_BOX_BUFFER  = 50
 
@@ -30,7 +30,11 @@ def getParams():
     'CLASS'           : len(LABELS),
     'ANCHORS'         : ANCHORS,
     'BATCH_SIZE'      : BATCH_SIZE,
-    'TRUE_BOX_BUFFER' : TRUE_BOX_BUFFER,
+    'OBJECT_SCALE'    : OBJECT_SCALE,
+    'NO_OBJECT_SCALE' : NO_OBJECT_SCALE,
+    'COORD_SCALE'     : COORD_SCALE,
+    'CLASS_SCALE'     : CLASS_SCALE,
+    'TRUE_BOX_BUFFER' : TRUE_BOX_BUFFER
 }
     return config
 
