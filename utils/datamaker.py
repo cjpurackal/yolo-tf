@@ -2,8 +2,7 @@
 
 import os
 import numpy as np
-from Bbox import Bbox
-import util
+from utils.Bbox import Bbox
 import cv2
 
 

@@ -1,0 +1,15 @@
+data
+data/*
+log
+log/*
+*.pyc
+__pycache__
+__pycache__/*
+bin
+bin/*
+lib
+lib/*
+env
+env/*
+.config
+.config/*
