@@ -71,19 +71,23 @@ def compute_iou(box1, box2):
 	
 	return float(intersect) / union
 
-def train_test_split(path_data,*args):
+def train_test_split(data_path,*args):
     if len(args) ==0:
         percentage_test = 10
     else:
         percentage_test=args[0]
-    file_train = open(path_data+'train.txt', 'w+')  
-    file_test = open(path_data+'test.txt', 'w+')
+    file_train = open(data_path+'train1.txt', 'w+')  
+    file_test = open(data_path+'test.txt', 'w+')
     counter = 1  
     index_test = round(100 / percentage_test) 
-    for i in glob.iglob(os.path.join(path_data, "*.txt")):  
-        if counter == index_test:
-            counter = 1
-            file_test.write(i+"\n")
-        else:
-            file_train.write(i+"\n")
-            counter = counter + 1
+    for cats in os.listdir(os.path.join(data_path,"images/")):
+        image_path=os.path.join(data_path,"images/",cats)
+        print(image_path)
+        for i in glob.iglob(os.path.join(image_path, "*.jpg")):  
+            print(i)
+            if counter == index_test:
+                counter = 1
+                file_test.write(i+"\n")
+            else:
+                file_train.write(i+"\n")
+                counter = counter + 1
