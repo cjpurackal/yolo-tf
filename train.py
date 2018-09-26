@@ -19,6 +19,7 @@ x = arch.getX()
 with tf.Session() as sess:
 	for i in range(int(len(open(dataset_path+"train.txt","r").readlines())/config["BATCH_SIZE"])):
 		print ("doing stuff on {}th batch".format(i))
+		images,labels = loader.next_batch(config["BATCH_SIZE"])
 		loss = loss.yolo_loss(preds, config, labels)
 		train_step = tf.train.AdamOptimizer(1e-4).minimize(loss)
 		sess.run(tf.global_variables_initializer())
