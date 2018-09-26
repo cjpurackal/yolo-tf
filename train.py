@@ -16,7 +16,8 @@ preds = arch.darknet()
 x = arch.getX()
 
 with tf.Session() as sess:
-	for _ in len(open(dataset_path+"train.txt","r").readlines())/config["BATCH_SIZE"]
+	for i in len(open(dataset_path+"train.txt","r").readlines())/config["BATCH_SIZE"]
+		print ("doing stuff on {}th batch".format(i))
 		loss = loss.yolo_loss(preds, config, labels)
 		train_step = tf.train.AdamOptimizer(1e-4).minimize(loss)
 		sess.run(tf.global_variables_initializer())
