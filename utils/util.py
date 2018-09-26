@@ -1,4 +1,4 @@
-from Bbox import Bbox
+from utils.Bbox import Bbox
 import numpy as np
 
 def compute_iou(box1, box2):
