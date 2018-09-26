@@ -82,9 +82,7 @@ def train_test_split(data_path,*args):
     index_test = round(100 / percentage_test) 
     for cats in os.listdir(os.path.join(data_path,"images/")):
         image_path=os.path.join(data_path,"images/",cats)
-        print(image_path)
         for i in glob.iglob(os.path.join(image_path, "*.jpg")):  
-            print(i)
             if counter == index_test:
                 counter = 1
                 file_test.write(i+"\n")
