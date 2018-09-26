@@ -1,15 +1,9 @@
-
 import tensorflow as tf
 import numpy as np
 
 
-
-
 def yolo_loss(y_pred, config, y_true):
-
-
 	class_wt = np.ones(config["CLASS"])
-
 	p_xy = np.reshape(config["ANCHORS"], [1, 1, 1, config["BOX"], 2])
 	mask_shape = tf.shape(y_true)[:4]
 	conf_mask  = tf.zeros(mask_shape)
@@ -53,7 +47,6 @@ def yolo_loss(y_pred, config, y_true):
 
 	true_box_conf = iou_scores * y_true[..., 4]
 	pred_box_conf = y_pred[..., 4]
-
 
 
 	conf_mask = conf_mask + tf.to_float(iou_scores < 0.6) * (1 - y_true[..., 4]) * config["NO_OBJECT_SCALE"]

@@ -1,6 +1,6 @@
 import numpy as np
 
-LABELS = ['apple','banana']
+LABELS = ['carrot']
 IMAGE_H, IMAGE_W = 416, 416
 GRID_H,  GRID_W  = 13 , 13
 BOX              = 5
@@ -13,10 +13,9 @@ NO_OBJECT_SCALE  = 1.0
 OBJECT_SCALE     = 5.0
 COORD_SCALE      = 1.0
 CLASS_SCALE      = 1.0
-BATCH_SIZE       = 2
+BATCH_SIZE       = 10
 WARM_UP_BATCHES  = 0
 TRUE_BOX_BUFFER  = 50
-
 
 
 def getParams():
