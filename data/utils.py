@@ -1,4 +1,6 @@
 import cv2
+import os
+import glob
 
 class Bbox:
 
@@ -68,3 +70,24 @@ def compute_iou(box1, box2):
 	union = w1*h1 + w2*h2 - intersect
 	
 	return float(intersect) / union
+
+def train_test_split(path_data,*args):
+    if len(args) ==0:
+        percentage_test = 10
+        print(percentage_test)
+        input()
+    else:
+        percentage_test=args[0]
+        print(percentage_test)
+        input()
+    file_train = open(path_data+'train.txt', 'w+')  
+    file_test = open(path_data+'test.txt', 'w+')
+    counter = 1  
+    index_test = round(100 / percentage_test) 
+    for i in glob.iglob(os.path.join(path_data, "*.txt")):  
+        if counter == index_test:
+            counter = 1
+            file_test.write(i+"\n")
+        else:
+            file_train.write(i+"\n")
+            counter = counter + 1
