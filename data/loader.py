@@ -11,6 +11,7 @@ class Loader:
 		self.config = config
 		self.label_format = label_format
 		self.anchors = [Bbox(0, 0, config["ANCHORS"][2*i], config["ANCHORS"][2*i + 1]) for i in range(int(len(config["ANCHORS"])/2))]
+		utils.train_test_split(self.data_path)
 		
 	def next_batch(self, batch_size):
 		x_batch = np.zeros([batch_size, self.config["IMAGE_W"], self.config["IMAGE_H"], 3], np.float32)
