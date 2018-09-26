@@ -23,6 +23,7 @@ with tf.Session() as sess:
 		ls = losses.yolo_loss(preds, config, labels)
 		train_step = tf.train.AdamOptimizer(1e-4).minimize(ls)
 		sess.run(tf.global_variables_initializer())
-		sess.run(train_step, feed_dict={x:images})
+		_ , ls_val = sess.run({train_step, ls}, feed_dict={x:images})
+		print ("loss : {}".format(ls_val))
 
 
