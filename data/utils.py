@@ -74,12 +74,8 @@ def compute_iou(box1, box2):
 def train_test_split(path_data,*args):
     if len(args) ==0:
         percentage_test = 10
-        print(percentage_test)
-        input()
     else:
         percentage_test=args[0]
-        print(percentage_test)
-        input()
     file_train = open(path_data+'train.txt', 'w+')  
     file_test = open(path_data+'test.txt', 'w+')
     counter = 1  
