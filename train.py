@@ -1,13 +1,14 @@
 import tensorflow as tf
 from matplotlib import pyplot as plt
 import numpy as np
-import cv2		
+import cv2
+import sys
 from network.darknet21 import Arch
 import config.parameters as p
 from loss import loss
 from data.loader import Loader
 
-dataset_path = "/home/christie/projects/hobby/yolo-tf/dataset/"
+dataset_path = sys.argv[1]
 config = p.getParams()
 loader = Loader(dataset_path, config, "bbox")
 
