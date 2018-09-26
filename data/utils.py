@@ -76,7 +76,7 @@ def train_test_split(data_path,*args):
         percentage_test = 10
     else:
         percentage_test=args[0]
-    file_train = open(data_path+'train1.txt', 'w+')  
+    file_train = open(data_path+'train.txt', 'w+')  
     file_test = open(data_path+'test.txt', 'w+')
     counter = 1  
     index_test = round(100 / percentage_test) 
