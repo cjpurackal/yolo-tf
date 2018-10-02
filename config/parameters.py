@@ -31,7 +31,7 @@ def getParams():
     'CLASS'           : len(LABELS),
     'ANCHORS'         : ANCHORS,
     'BATCH_SIZE'      : BATCH_SIZE,
-    'EPOCH_SIZE'      : EPOCH_SIZE  
+    'EPOCH_SIZE'      : EPOCH_SIZE,
     'OBJECT_SCALE'    : OBJECT_SCALE,
     'NO_OBJECT_SCALE' : NO_OBJECT_SCALE,
     'COORD_SCALE'     : COORD_SCALE,
