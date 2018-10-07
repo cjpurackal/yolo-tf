@@ -76,16 +76,15 @@ def train_test_split(data_path,*args):
         percentage_test = 10
     else:
         percentage_test=args[0]
+    img_count = len(os.listdir(data_path+"images"))
     file_train = open(data_path+'train.txt', 'w+')  
     file_test = open(data_path+'test.txt', 'w+')
-    counter = 1  
-    index_test = round(100 / percentage_test) 
-    for cats in os.listdir(os.path.join(data_path,"images/")):
-        image_path=os.path.join(data_path,"images/",cats)
-        for i in glob.iglob(os.path.join(image_path, "*.jpg")):  
-            if counter == index_test:
-                counter = 1
-                file_test.write(i+"\n")
-            else:
-                file_train.write(i+"\n")
-                counter = counter + 1
+    counter = 0
+    index_test = round(img_count * percentage_test / 100)
+    all_items = glob.glob(data_path+"images/*.jpg")
+    for i in all_items:
+        if counter < index_test:
+            file_test.write(i+"\n")
+            counter += 1
+        else:
+            file_train.write(i+"\n")
