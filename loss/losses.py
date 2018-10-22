@@ -3,7 +3,7 @@ import numpy as np
 
 
 def yolo_loss(y_pred, config, y_true):
-	class_wt = np.ones(config["CLASS"])
+	class_wt = np.ones(config["CLASS"],dtype=np.float32)
 	p_xy = np.reshape(config["ANCHORS"], [1, 1, 1, config["BOX"], 2])
 	mask_shape = tf.shape(y_true)[:4]
 	conf_mask  = tf.zeros(mask_shape)
