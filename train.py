@@ -31,7 +31,7 @@ with tf.Session() as sess:
 			print ("doing stuff on {}th batch".format(j))
 			images,labels_ = loader.next_batch(config["BATCH_SIZE"])
 			sess.run(tf.global_variables_initializer())
-			sess.run(train_step, feed_dict={x:images,labels=labels_})
+			sess.run(train_step, feed_dict={x:images,labels:labels_})
 			# ls_val = sess.run(ls, feed_dict={x:images})
 			# print ("loss : {}".format(ls_val))
 		if i%100 == 0:
