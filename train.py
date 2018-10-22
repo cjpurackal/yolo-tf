@@ -26,13 +26,11 @@ if not os.path.exists(config["MODEL_SAVE_PATH"]):
 		os.mkdir(config["MODEL_SAVE_PATH"])
 
 with tf.Session() as sess:
+	sess.run(tf.global_variables_initializer())
 	for i in range(config["EPOCH_SIZE"]):
-		for j,jpg in zip(range(int(len(open(dataset_path+"train.txt","r").readlines())/config["BATCH_SIZE"])),open(dataset_path+"train.txt","r").readlines()):	
+		for j in range(int(len(open(dataset_path+"train.txt","r").readlines())/config["BATCH_SIZE"])):	
 			print ("doing stuff on {}th batch".format(j))
-			print ("processing {} file ".format(jpg))
 			images,labels_ = loader.next_batch(config["BATCH_SIZE"])
-			print (labels_.shape)
-			sess.run(tf.global_variables_initializer())
 			sess.run(train_step, feed_dict={x:images,labels:labels_})
 			ls_val = sess.run(ls, feed_dict={x:images,labels:labels_})
 			print ("loss : {}".format(ls_val))
