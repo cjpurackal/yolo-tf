@@ -52,6 +52,9 @@ def yolo_loss(y_pred, config, y_true):
 	conf_mask = conf_mask + tf.to_float(iou_scores < 0.6) * (1 - y_true[..., 4]) * config["NO_OBJECT_SCALE"]
 
 	conf_mask = conf_mask + y_true[..., 4] * config["OBJECT_SCALE"]
+	print (class_wt.dtype)
+	print (true_classes.dtype)
+	input()
 	class_mask = y_true[..., 4] * tf.gather(class_wt, true_classes) * config["CLASS_SCALE"] 
 	coord_mask = tf.expand_dims(y_true[..., 4], axis=-1) * config["COORD_SCALE"]
 	no_boxes_mask = tf.to_float(coord_mask <  config["COORD_SCALE"]/2.)
