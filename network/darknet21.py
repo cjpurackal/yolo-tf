@@ -6,7 +6,7 @@ class Arch:
 
 	def __init__(self,config):
 		self.config = config
-		self.x = tf.placeholder(dtype=tf.float32,shape=[None, config["IMAGE_W"], config["IMAGE_H"], 3])
+		self.x = tf.placeholder(dtype=tf.float64,shape=[None, config["IMAGE_W"], config["IMAGE_H"], 3])
 
 	def darknet(self):
 		conv1 = tf.layers.conv2d(self.x, filters=32, kernel_size=[3, 3], padding="same", activation=tf.nn.leaky_relu)
