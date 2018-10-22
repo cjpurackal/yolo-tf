@@ -29,7 +29,7 @@ if not os.path.exists(config["MODEL_SAVE_PATH"]):
 
 with tf.Session() as sess:
 	if sys.argv[1] == "train":
-	sess.run(tf.global_variables_initializer())
+		sess.run(tf.global_variables_initializer())
 		for i in range(config["EPOCH_SIZE"]):
 			for j in range(int(len(open(dataset_path+"train.txt","r").readlines())/config["BATCH_SIZE"])):	
 				print ("doing stuff on {}th batch".format(j))
