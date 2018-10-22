@@ -15,7 +15,7 @@ loader = Loader(dataset_path, config, "bbox")
 
 arch = Arch(config)
 preds = arch.darknet()
-labels = tf.placeholder(tf.float64,[None,13,13,5,6])
+labels = tf.placeholder(tf.float32,[None,13,13,5,6])
 x = arch.getX()
 saver = tf.train.Saver()
 print (preds.dtype)
@@ -35,7 +35,7 @@ with tf.Session() as sess:
 			images,labels_ = loader.next_batch(config["BATCH_SIZE"])
 			sess.run(tf.global_variables_initializer())
 			print (labels_.dtype)
-			input()
+
 			sess.run(train_step, feed_dict={x:images,labels:labels_})
 			# ls_val = sess.run(ls, feed_dict={x:images})
 			# print ("loss : {}".format(ls_val))
