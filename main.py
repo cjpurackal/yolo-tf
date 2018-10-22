@@ -9,9 +9,11 @@ import config.parameters as p
 from loss import losses
 from data.loader import Loader
 
-dataset_path = sys.argv[1]
 config = p.getParams()
-loader = Loader(dataset_path, config, "bbox")
+
+if sys.argv[1] == "train":
+	dataset_path = sys.argv[2]
+	loader = Loader(dataset_path, config, "bbox")
 
 arch = Arch(config)
 preds = arch.darknet()
