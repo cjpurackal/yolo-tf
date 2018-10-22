@@ -41,5 +41,5 @@ with tf.Session() as sess:
 				save_path = saver.save(sess, config["MODEL_SAVE_PATH"]+"model_{}.ckpt".format(i))
 				print ("Model at {} epoch saved at {}".format(i, save_path))
 	elif sys.argv[1] == "test":
-		saver.restore(sess, config["MODEL_SAVE_PATH"]+"/model_800.ckpt")
+		saver.restore(sess, config["MODEL_SAVE_PATH"]+"/model_700.ckpt")
 		print ("model restored!")
