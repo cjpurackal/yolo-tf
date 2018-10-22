@@ -30,6 +30,7 @@ with tf.Session() as sess:
 		for j in range(int(len(open(dataset_path+"train.txt","r").readlines())/config["BATCH_SIZE"])):			
 			print ("doing stuff on {}th batch".format(j))
 			images,labels_ = loader.next_batch(config["BATCH_SIZE"])
+			print (labels_.shape)
 			sess.run(tf.global_variables_initializer())
 			sess.run(train_step, feed_dict={x:images,labels:labels_})
 			ls_val = sess.run(ls, feed_dict={x:images,labels:labels_})
