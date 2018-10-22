@@ -15,7 +15,7 @@ loader = Loader(dataset_path, config, "bbox")
 
 arch = Arch(config)
 preds = arch.darknet()
-labels = tf.placeholder(tf.float32,[None,13,13,5,6])
+labels = tf.placeholder(tf.float64,[None,13,13,5,6])
 x = arch.getX()
 saver = tf.train.Saver()
 
