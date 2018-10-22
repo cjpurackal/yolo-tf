@@ -27,8 +27,9 @@ if not os.path.exists(config["MODEL_SAVE_PATH"]):
 
 with tf.Session() as sess:
 	for i in range(config["EPOCH_SIZE"]):
-		for j in range(int(len(open(dataset_path+"train.txt","r").readlines())/config["BATCH_SIZE"])):			
+		for j,jpg in zip(range(int(len(open(dataset_path+"train.txt","r").readlines())/config["BATCH_SIZE"])),open(dataset_path+"train.txt","r").readlines()):	
 			print ("doing stuff on {}th batch".format(j))
+			print ("processing {} file ".format(jpg))
 			images,labels_ = loader.next_batch(config["BATCH_SIZE"])
 			print (labels_.shape)
 			sess.run(tf.global_variables_initializer())
