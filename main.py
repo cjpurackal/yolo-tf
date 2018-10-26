@@ -48,4 +48,4 @@ with tf.Session() as sess:
 		saver.restore(sess, config["MODEL_SAVE_PATH"]+"model_700.ckpt")
 		print ("model restored!")
 		img = data.utils.manip_image(sys.argv[2], config)
-		img = cv2.resize([1,config["IMAGE_W"], config["IMAGE_H"], 3])
+		img = cv2.resize(img,(1,config["IMAGE_W"], config["IMAGE_H"], 3))
