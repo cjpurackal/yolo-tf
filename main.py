@@ -50,3 +50,4 @@ with tf.Session() as sess:
 		img = data.utils.manip_image(sys.argv[2], config)
 		print (type(img))
 		img = img.reshape([1, config["IMAGE_W"], config["IMAGE_H"], 3])
+		p = sess.run(preds,feed_dict={x:img})
