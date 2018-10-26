@@ -7,13 +7,16 @@ import os
 from network.darknet21 import Arch
 import config.parameters as p
 from loss import losses
+import data
 from data.loader import Loader
+
 
 config = p.getParams()
 
 if sys.argv[1] == "train":
 	dataset_path = sys.argv[2]
 	loader = Loader(dataset_path, config, "bbox")
+
 
 arch = Arch(config)
 preds = arch.darknet()
@@ -44,3 +47,6 @@ with tf.Session() as sess:
 		saver = tf.train.import_meta_graph(config["MODEL_SAVE_PATH"]+"model_700.ckpt.meta")
 		saver.restore(sess, config["MODEL_SAVE_PATH"]+"model_700.ckpt")
 		print ("model restored!")
+		img = plt.imread(sys.argv[2])
+		img = data.utils.manip_image(img)
+		
