@@ -47,5 +47,4 @@ with tf.Session() as sess:
 		saver = tf.train.import_meta_graph(config["MODEL_SAVE_PATH"]+"model_700.ckpt.meta")
 		saver.restore(sess, config["MODEL_SAVE_PATH"]+"model_700.ckpt")
 		print ("model restored!")
-		img = plt.imread(sys.argv[2])
-		img = data.utils.manip_image(img, config)
+		img = data.utils.manip_image(sys.argv[2], config)
