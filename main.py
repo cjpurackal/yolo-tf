@@ -51,3 +51,4 @@ with tf.Session() as sess:
 		print (type(img))
 		img = img.reshape([1, config["IMAGE_W"], config["IMAGE_H"], 3])
 		p = sess.run(preds,feed_dict={x:img})
+		print (p.shape)
