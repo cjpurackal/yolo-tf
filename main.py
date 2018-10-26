@@ -48,5 +48,4 @@ with tf.Session() as sess:
 		saver.restore(sess, config["MODEL_SAVE_PATH"]+"model_700.ckpt")
 		print ("model restored!")
 		img = plt.imread(sys.argv[2])
-		img = data.utils.manip_image(img)
-		
+		img = data.utils.manip_image(img, config)
