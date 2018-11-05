@@ -15,4 +15,4 @@ def draw_box(t, img):
 	# img = plt.imread(img)
 	where = tf.not_equal(t[0,:,:,:,0],0)
 	indices = tf.where(where)
-	print (indices[0])
+	print (indices)
