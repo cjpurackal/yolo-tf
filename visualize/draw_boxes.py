@@ -12,4 +12,6 @@ def draw_box(t, img):
 	if exists(img):
 		raise ValueError("%s , couldn't find file"%img)
 	img = plt.imread(img)
-	print (t)
+	where = tf.not_equal(t[0,:,:,:,0],0)
+	indices = tf.where(where)
+	print (indices)

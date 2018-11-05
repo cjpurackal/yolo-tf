@@ -55,7 +55,4 @@ with tf.Session() as sess:
 		print (p[0,:,:,0,0])
 	elif sys.argv[1] == "visualize":
 		_, t= loader.next_batch(batch_size=1,ptr=0,print_img_files=True)
-		print (t.shape)
-
-
-		# vdb.draw_box(t ,sys.argv[2])
+		vdb.draw_box(t ,sys.argv[2])
