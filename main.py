@@ -9,6 +9,7 @@ import config.parameters as p
 from loss import losses
 import data
 from data.loader import Loader
+import visualize.darw_boxes as vdb
 
 
 config = p.getParams()
@@ -52,3 +53,7 @@ with tf.Session() as sess:
 		img = img.reshape([1, config["IMAGE_W"], config["IMAGE_H"], 3])
 		p = sess.run(preds,feed_dict={x:img})
 		print (p[0,:,:,0,0])
+	elif sys.argv[1] == "visualize":
+		x_,y_ = loader.next_batch(batch_size=1,ptr=0,print_img_files=True)
+
+		# vdb.draw_box(t ,sys.argv[2])

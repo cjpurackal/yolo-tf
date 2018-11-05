@@ -2,6 +2,7 @@ import numpy as np
 import os
 from data.utils import Bbox
 import data.utils as utils
+from data.loader import Loader
 
 class Loader:
 
@@ -13,15 +14,20 @@ class Loader:
 		self.anchors = [Bbox(0, 0, config["ANCHORS"][2*i], config["ANCHORS"][2*i + 1]) for i in range(int(len(config["ANCHORS"])/2))]
 		utils.train_test_split(self.data_path)
 		
-	def next_batch(self, batch_size):
+	def next_batch(self, batch_size, train_txt_path=None, ptr=None, print_img_files=False):
 		x_batch = np.zeros([batch_size, self.config["IMAGE_W"], self.config["IMAGE_H"], 3], np.float32)
 		y_batch = np.zeros([batch_size, self.config["GRID_W"], self.config["GRID_H"], self.config["BOX"], 4+1+self.config["CLASS"]], np.float32)
 		max_iou = -1
 		best_prior = -1
 		instance_count = 0
-		ptr = self.batch_ptr*batch_size
-		image_files = open(os.path.join(self.data_path,"train.txt"), "r").readlines()[ptr:ptr+batch_size]
-
+		if ptr == None:
+			ptr = self.batch_ptr*batch_size
+		if train_txt_path == None:
+			train_txt_path = os.path.join(self.data_path,"train.txt")
+		image_files = open(train_txt_path, "r").readlines()[ptr:ptr+batch_size]
+		if print_img_files is True:
+			print (image_files)
+			input()
 		for img in image_files:
 			name = img.split("/")[-1][:-4]
 			# print (name)
