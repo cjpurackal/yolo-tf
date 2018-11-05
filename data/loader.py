@@ -2,7 +2,6 @@ import numpy as np
 import os
 from data.utils import Bbox
 import data.utils as utils
-from data.loader import Loader
 
 class Loader:
 
