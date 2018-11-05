@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from os.path import join,exists
 import data.utils as utils
+import tensorflow as tf
 
 
 def draw_box(t, img):
