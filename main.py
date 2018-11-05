@@ -54,7 +54,8 @@ with tf.Session() as sess:
 		p = sess.run(preds,feed_dict={x:img})
 		print (p[0,:,:,0,0])
 	elif sys.argv[1] == "visualize":
-		x_,y_ = loader.next_batch(batch_size=1,ptr=0,print_img_files=True)
-		
+		_, t= loader.next_batch(batch_size=1,ptr=0,print_img_files=True)
+		print (t.shape)
+
 
 		# vdb.draw_box(t ,sys.argv[2])
