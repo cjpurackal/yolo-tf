@@ -18,15 +18,14 @@ if sys.argv[1] == "train" or "visualize":
 	dataset_path = sys.argv[2]
 	loader = Loader(dataset_path, config, "bbox")
 
-
-arch = Arch(config)
-preds = arch.darknet()
-labels = tf.placeholder(tf.float32,[None,13,13,5,6])
-x = arch.getX()
-saver = tf.train.Saver()
-
-ls = losses.yolo_loss(preds, config, labels)
-train_step = tf.train.AdamOptimizer(1e-4).minimize(ls)
+if sys.argv[1] == "train":
+	arch = Arch(config)
+	preds = arch.darknet()
+	labels = tf.placeholder(tf.float32,[None,13,13,5,6])
+	x = arch.getX()
+	saver = tf.train.Saver()
+	ls = losses.yolo_loss(preds, config, labels)
+	train_step = tf.train.AdamOptimizer(1e-4).minimize(ls)
 
 if not os.path.exists(config["MODEL_SAVE_PATH"]):
 		os.mkdir(config["MODEL_SAVE_PATH"])
