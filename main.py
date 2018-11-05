@@ -14,7 +14,7 @@ import visualize.draw_boxes as vdb
 
 config = p.getParams()
 
-if sys.argv[1] == "train":
+if sys.argv[1] == "train" or "visualize":
 	dataset_path = sys.argv[2]
 	loader = Loader(dataset_path, config, "bbox")
 
@@ -55,5 +55,6 @@ with tf.Session() as sess:
 		print (p[0,:,:,0,0])
 	elif sys.argv[1] == "visualize":
 		x_,y_ = loader.next_batch(batch_size=1,ptr=0,print_img_files=True)
+		
 
 		# vdb.draw_box(t ,sys.argv[2])
