@@ -11,7 +11,7 @@ import data
 from data.loader import Loader
 import visualize.draw_boxes as vdb
 
-
+tf.enable_eager_execution()
 config = p.getParams()
 
 if sys.argv[1] == "train" or "visualize":
