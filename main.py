@@ -9,7 +9,7 @@ import config.parameters as p
 from loss import losses
 import data
 from data.loader import Loader
-import visualize.darw_boxes as vdb
+import visualize.draw_boxes as vdb
 
 
 config = p.getParams()
