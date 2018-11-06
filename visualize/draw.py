@@ -5,7 +5,7 @@ import data.utils as utils
 import tensorflow as tf
 
 
-def draw_boxes(t, img, config):
+def boxes(t, img, config):
 	if t is None:
 		raise ValueError("Tensor cannot be None")
 	# if img is None:

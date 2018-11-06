@@ -9,7 +9,7 @@ import config.parameters as p
 from loss import losses
 import data
 from data.loader import Loader
-import visualize.draw_boxes as vdb
+from visualize import draw
 
 tf.enable_eager_execution()
 config = p.getParams()
@@ -54,4 +54,4 @@ with tf.Session() as sess:
 		print (p[0,:,:,0,0])
 	elif sys.argv[1] == "visualize":
 		_, t= loader.next_batch(batch_size=1,ptr=0,print_img_files=True)
-		vdb.draw_box(t,"dummy")
+		draw.boxes(t,"dummy", config)
