@@ -2,9 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from os.path import join,exists
 import data.utils as utils
-import tensorflow as tf
 
-def boxes(t, img, config):
+def boxes(t, img, config, tf):
 	if t is None:
 		raise ValueError("Tensor cannot be None")
 	# if img is None:

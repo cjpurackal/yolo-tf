@@ -56,4 +56,4 @@ with tf.Session() as sess:
 		print (p[0,:,:,0,0])
 	elif sys.argv[1] == "visualize":
 		_, t= loader.next_batch(batch_size=1,ptr=0,print_img_files=True)
-		draw.boxes(t,"dummy", config)
+		draw.boxes(t,"dummy", config, tf)
