@@ -4,8 +4,6 @@ from os.path import join,exists
 import data.utils as utils
 import tensorflow as tf
 
-tf.enable_eager_execution()
-
 def boxes(t, img, config):
 	if t is None:
 		raise ValueError("Tensor cannot be None")

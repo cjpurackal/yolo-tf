@@ -1,4 +1,6 @@
 import tensorflow as tf
+tf.enable_eager_execution()
+
 from matplotlib import pyplot as plt
 import numpy as np
 import cv2
@@ -11,7 +13,7 @@ import data
 from data.loader import Loader
 from visualize import draw
 
-tf.enable_eager_execution()
+
 config = p.getParams()
 
 if sys.argv[1] == "train" or "visualize":
