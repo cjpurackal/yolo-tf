@@ -55,18 +55,18 @@ with tf.Session() as sess:
 		print (img.shape)
 		inp = tf.get_default_graph().get_tensor_by_name('Placeholder:0')
 		out = tf.get_default_graph().get_tensor_by_name('conv2d_21/bias:0')
-		for v in tf.get_default_graph().get_collection("variables"):
-			if 13 in v.shape:
-				print (v)
-		input()
-		# for x in tf.get_default_graph().get_operations():
-		# 	if x.type == "Placeholder":
-		# 		print (x)		
+		# for v in tf.get_default_graph().get_collection("variables"):
+		# 	if 13 in v.shape:
+		# 		print (v)
 		# input()
-		for v in tf.get_default_graph().get_collection("trainable_variables"):
-			if 13 in v.shape:
-				print (v)
+		for x in tf.get_default_graph().get_operations():
+			if x.type == "Placeholder":
+				print (x)		
 		input()
+		# for v in tf.get_default_graph().get_collection("trainable_variables"):
+		# 	if 13 in v.shape:
+		# 		print (v)
+		# input()
 		p = sess.run(out,feed_dict={inp:img})
 		print (p.shape)
 	elif sys.argv[1] == "visualize":
