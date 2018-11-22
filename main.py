@@ -55,5 +55,13 @@ with tf.Session() as sess:
 		p = sess.run(preds,feed_dict={x:img})
 		print (p[0,:,:,0,0])
 	elif sys.argv[1] == "visualize":
-		_, t= loader.next_batch(batch_size=1,ptr=0,print_img_files=True)
-		draw.boxes(t,"dummy", config, tf)
+		train_txt_path = os.path.join("dataset","train.txt")
+		_, t= loader.next_batch(batch_size=1, ptr=0, train_txt_path=train_txt_path, print_img_files=True)	
+		img = open(train_txt_path, "r").readlines()[0]
+		img = os.path.join(os.getcwd(),img)
+		img = img.strip("\n")
+		if os.path.exists(img):
+			img = data.utils.manip_image(img, config)
+			draw.labels(t, img, config)
+		else:
+			print ("file doesn't exist")

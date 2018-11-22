@@ -11,7 +11,7 @@ class Loader:
 		self.config = config
 		self.label_format = label_format
 		self.anchors = [Bbox(0, 0, config["ANCHORS"][2*i], config["ANCHORS"][2*i + 1]) for i in range(int(len(config["ANCHORS"])/2))]
-		utils.train_test_split(self.data_path)
+		# utils.train_test_split(self.data_path)
 		
 	def next_batch(self, batch_size, train_txt_path=None, ptr=None, print_img_files=False):
 		x_batch = np.zeros([batch_size, self.config["IMAGE_W"], self.config["IMAGE_H"], 3], np.float32)
@@ -36,7 +36,7 @@ class Loader:
 			lbl_all = [l+lbl[i-1] for i, l in enumerate(lbl) if i % 2 == 0]
 			objs = utils.convert_to_bbox(lbl_all)
 			image, objs = utils.manip_image_and_label(img.strip("\n"), objs, self.config)
-
+			print ("number of objects = %d" % len(objs))
 			for obj in objs:						
 				class_vector = np.zeros(self.config["CLASS"])
 				class_vector[obj.cat] = 1
@@ -64,12 +64,10 @@ class Loader:
 						max_iou = iou
 						best_prior = i
 						# print ("best iou is : {}".format(max_iou))
-
 				y_batch[instance_count, grid_x, grid_y, best_prior, 0:4] = bbox
 				y_batch[instance_count, grid_x, grid_y, best_prior, 4] = 1
 				y_batch[instance_count, grid_x, grid_y, best_prior, 5:5+self.config["CLASS"]] = class_vector
 				x_batch[instance_count] = image
-
 			instance_count += 1
 		self.batch_ptr += 1
 
