@@ -54,7 +54,7 @@ with tf.Session() as sess:
 		img = img.reshape([1, config["IMAGE_H"], config["IMAGE_W"], 3])
 		print (img.shape)
 		inp = tf.get_default_graph().get_tensor_by_name('Placeholder:0')
-		out = tf.get_default_graph().get_tensor_by_name('conv2d_21/bias:0')
+		# out = tf.get_default_graph().get_tensor_by_name('')
 		# for v in tf.get_default_graph().get_collection("variables"):
 		# 	if 13 in v.shape:
 		# 		print (v)
@@ -63,10 +63,9 @@ with tf.Session() as sess:
 		# 	if x.type == "Placeholder":
 		# 		print (x)		
 		# input()
-		# for v in tf.get_default_graph().get_collection("trainable_variables"):
-		# 	if 13 in v.shape:
-		# 		print (v)
-		# input()
+		for v in tf.get_default_graph().get_collection("trainable_variables"):
+			print (v)
+			input()
 		p = sess.run(out,feed_dict={inp:img})
 		p = np.reshape(p,[1, config["GRID_H"], config["GRID_W"], config["BOX"], 4 + 1 + config["CLASS"]])
 		print (p.shape)
