@@ -55,9 +55,13 @@ with tf.Session() as sess:
 		print (img.shape)
 		for v in tf.get_default_graph().get_collection("variables"):
 			print(v)
+		input()
+		for v in tf.get_default_graph().get_collection("placeholder"):
+			print(v)			
+		input()
 		for v in tf.get_default_graph().get_collection("trainable_variables"):
 			print(v)
-
+		input()
 		# p = sess.run(preds,feed_dict={x:img})
 		# print (p[0,:,:,0,0])
 	elif sys.argv[1] == "visualize":
