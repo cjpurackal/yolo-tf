@@ -51,7 +51,7 @@ with tf.Session() as sess:
 		print ("model restored!")
 		img = data.utils.manip_image(sys.argv[2], config)
 		print (type(img))
-		img = img.reshape([1, config["IMAGE_W"], config["IMAGE_H"], 3])
+		img = img.reshape([1, config["IMAGE_H"], config["IMAGE_W"], 3])
 		p = sess.run(preds,feed_dict={x:img})
 		print (p[0,:,:,0,0])
 	elif sys.argv[1] == "visualize":
