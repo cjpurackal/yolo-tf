@@ -53,8 +53,9 @@ with tf.Session() as sess:
 		print (type(img))
 		img = img.reshape([1, config["IMAGE_H"], config["IMAGE_W"], 3])
 		print (img.shape)
-		p = sess.run(preds,feed_dict={x:img})
-		print (p[0,:,:,0,0])
+		tf.trainable_variables()
+		# p = sess.run(preds,feed_dict={x:img})
+		# print (p[0,:,:,0,0])
 	elif sys.argv[1] == "visualize":
 		train_txt_path = os.path.join("dataset","train.txt")
 		_, t= loader.next_batch(batch_size=1, ptr=0, train_txt_path=train_txt_path, print_img_files=True)	
