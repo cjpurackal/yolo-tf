@@ -66,7 +66,7 @@ with tf.Session() as sess:
 		# 	print(v)
 		# input()
 		p = sess.run(out,feed_dict={inp:img})
-		print (p[0,:,:,0,0])
+		print (p.shape)
 	elif sys.argv[1] == "visualize":
 		train_txt_path = os.path.join("dataset","train.txt")
 		_, t= loader.next_batch(batch_size=1, ptr=0, train_txt_path=train_txt_path, print_img_files=True)	
