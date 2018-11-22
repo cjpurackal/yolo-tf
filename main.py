@@ -56,7 +56,7 @@ with tf.Session() as sess:
 		for v in tf.get_default_graph().get_collection("variables"):
 			print(v)
 		input()
-		for v in tf.get_default_graph().get_collection("placeholder"):
+		for v in tf.get_default_graph().get_collection("placeholders"):
 			print(v)			
 		input()
 		for v in tf.get_default_graph().get_collection("trainable_variables"):
