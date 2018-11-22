@@ -54,7 +54,7 @@ with tf.Session() as sess:
 		img = img.reshape([1, config["IMAGE_H"], config["IMAGE_W"], 3])
 		print (img.shape)
 		inp = tf.get_default_graph().get_tensor_by_name('Placeholder:0')
-		out = tf.get_default_graph().get_tensor_by_name('Placeholder_1_1')
+		out = tf.get_default_graph().get_tensor_by_name('Placeholder_1_1:0')
 		# for v in tf.get_default_graph().get_collection("variables"):
 		# 	if 13 in v.shape:
 		# 		print (v)
