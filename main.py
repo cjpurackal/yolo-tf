@@ -20,7 +20,7 @@ if sys.argv[1] == "train" or "visualize":
 	dataset_path = sys.argv[2]
 	loader = Loader(dataset_path, config, "bbox")
 
-if sys.argv[1] == "train" or "test":
+if sys.argv[1] == "train"
 	arch = Arch(config)
 	preds = arch.darknet()
 	labels = tf.placeholder(tf.float32,[None,13,13,5,6])
@@ -68,6 +68,7 @@ with tf.Session() as sess:
 		# 		print (v)
 		# input()
 		p = sess.run(out,feed_dict={inp:img})
+		p = np.reshape(p,[1, config["GRID_H"], config["GRID_W"], config["BOX"], 4 + 1 + config["CLASS"]])
 		print (p.shape)
 	elif sys.argv[1] == "visualize":
 		train_txt_path = os.path.join("dataset","train.txt")
