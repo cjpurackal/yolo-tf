@@ -56,14 +56,16 @@ with tf.Session() as sess:
 		inp = tf.get_default_graph().get_tensor_by_name('Placeholder:0')
 		out = tf.get_default_graph().get_tensor_by_name('conv2d_21/bias:0')
 		for v in tf.get_default_graph().get_collection("variables"):
-			print(v)
+			if v.shape[1] == 13:
+				print (v)
 		input()
-		for x in tf.get_default_graph().get_operations():
-			if x.type == "Placeholder":
-				print (x)		
-		input()
+		# for x in tf.get_default_graph().get_operations():
+		# 	if x.type == "Placeholder":
+		# 		print (x)		
+		# input()
 		for v in tf.get_default_graph().get_collection("trainable_variables"):
-			print(v)
+			if v.shape[1] == 13:
+				print (v)
 		input()
 		p = sess.run(out,feed_dict={inp:img})
 		print (p.shape)
