@@ -65,7 +65,7 @@ with tf.Session() as sess:
 		# for v in tf.get_default_graph().get_collection("trainable_variables"):
 		# 	print(v)
 		# input()
-		# p = sess.run(preds,feed_dict={x:img})
+		p = sess.run(out,feed_dict={inp:img})
 		# print (p[0,:,:,0,0])
 	elif sys.argv[1] == "visualize":
 		train_txt_path = os.path.join("dataset","train.txt")
