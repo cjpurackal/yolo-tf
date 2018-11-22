@@ -55,17 +55,16 @@ with tf.Session() as sess:
 		print (img.shape)
 		inp = tf.get_default_graph().get_tensor_by_name('Placeholder:0')
 		# out = tf.get_default_graph().get_tensor_by_name('')
-		# for v in tf.get_default_graph().get_collection("variables"):
-		# 	if 13 in v.shape:
-		# 		print (v)
-		# input()
+		for v in tf.get_default_graph().get_collection("variables"):
+			print (v)
+			input()
 		# for x in tf.get_default_graph().get_operations():
 		# 	if x.type == "Placeholder":
 		# 		print (x)		
-		# input()
-		for v in tf.get_default_graph().get_collection("trainable_variables"):
-			print (v)
-			input()
+		# # input()
+		# for v in tf.get_default_graph().get_collection("trainable_variables"):
+		# 	print (v)
+		# 	input()
 		p = sess.run(out,feed_dict={inp:img})
 		p = np.reshape(p,[1, config["GRID_H"], config["GRID_W"], config["BOX"], 4 + 1 + config["CLASS"]])
 		print (p.shape)
