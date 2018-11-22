@@ -53,7 +53,7 @@ with tf.Session() as sess:
 		print (type(img))
 		img = img.reshape([1, config["IMAGE_H"], config["IMAGE_W"], 3])
 		print (img.shape)
-		inp = tf.get_default_graph().get_tensor_by_name('Placeholder')
+		inp = tf.get_default_graph().get_tensor_by_name('Placeholder:0')
 		out = tf.get_default_graph().get_tensor_by_name('conv2d_21/bias:0')
 		# for v in tf.get_default_graph().get_collection("variables"):
 		# 	print(v)
