@@ -53,16 +53,18 @@ with tf.Session() as sess:
 		print (type(img))
 		img = img.reshape([1, config["IMAGE_H"], config["IMAGE_W"], 3])
 		print (img.shape)
-		for v in tf.get_default_graph().get_collection("variables"):
-			print(v)
-		input()
-		for x in tf.get_default_graph().get_operations():
-			if x.type == "Placeholder":
-				print (x)		
-		input()
-		for v in tf.get_default_graph().get_collection("trainable_variables"):
-			print(v)
-		input()
+		inp = tf.get_default_graph().get_tensor_by_name('Placeholder')
+		out = tf.get_default_graph().get_tensor_by_name('conv2d_21/bias:0')
+		# for v in tf.get_default_graph().get_collection("variables"):
+		# 	print(v)
+		# input()
+		# for x in tf.get_default_graph().get_operations():
+		# 	if x.type == "Placeholder":
+		# 		print (x)		
+		# input()
+		# for v in tf.get_default_graph().get_collection("trainable_variables"):
+		# 	print(v)
+		# input()
 		# p = sess.run(preds,feed_dict={x:img})
 		# print (p[0,:,:,0,0])
 	elif sys.argv[1] == "visualize":
