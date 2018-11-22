@@ -54,14 +54,14 @@ with tf.Session() as sess:
 		img = img.reshape([1, config["IMAGE_H"], config["IMAGE_W"], 3])
 		print (img.shape)
 		inp = tf.get_default_graph().get_tensor_by_name('Placeholder:0')
-		# out = tf.get_default_graph().get_tensor_by_name('')
+		out = tf.get_default_graph().get_tensor_by_name('Placeholder_1:0')
 		# for v in tf.get_default_graph().get_collection("variables"):
 		# 	print (v)
 		# 	input()
-		for x in tf.get_default_graph().get_operations():
-			if x.type == "Placeholder":
-				print(x)		
-				input()
+		# for x in tf.get_default_graph().get_operations():
+		# 	if x.type == "Placeholder":
+		# 		print(x)		
+		# 		input()
 		# input()
 		# for v in tf.get_default_graph().get_collection("trainable_variables"):
 		# 	print (v)
