@@ -53,7 +53,11 @@ with tf.Session() as sess:
 		print (type(img))
 		img = img.reshape([1, config["IMAGE_H"], config["IMAGE_W"], 3])
 		print (img.shape)
-		tf.trainable_variables()
+		for v in tf.get_default_graph().get_collection("variables"):
+			print(v)
+		for v in tf.get_default_graph().get_collection("trainable_variables"):
+			print(v)
+
 		# p = sess.run(preds,feed_dict={x:img})
 		# print (p[0,:,:,0,0])
 	elif sys.argv[1] == "visualize":
