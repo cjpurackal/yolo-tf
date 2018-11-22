@@ -54,7 +54,7 @@ with tf.Session() as sess:
 		img = img.reshape([1, config["IMAGE_H"], config["IMAGE_W"], 3])
 		print (img.shape)
 		inp = tf.get_default_graph().get_tensor_by_name('Placeholder:0')
-		out = tf.get_default_graph().get_tensor_by_name('Placeholder_1_1:0')
+		out = tf.get_default_graph().get_tensor_by_name('conv2d_21/bias:0')
 		# for v in tf.get_default_graph().get_collection("variables"):
 		# 	if 13 in v.shape:
 		# 		print (v)
@@ -68,7 +68,7 @@ with tf.Session() as sess:
 		# 		print (v)
 		# input()
 		p = sess.run(out,feed_dict={inp:img})
-		print (p.shape)
+		print (type(p))
 	elif sys.argv[1] == "visualize":
 		train_txt_path = os.path.join("dataset","train.txt")
 		_, t= loader.next_batch(batch_size=1, ptr=0, train_txt_path=train_txt_path, print_img_files=True)	
