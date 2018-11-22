@@ -59,8 +59,9 @@ with tf.Session() as sess:
 		# 	print (v)
 		# 	input()
 		for x in tf.get_default_graph().get_operations():
-			print (x)		
-			input()				
+			if x.type == "Placeholder":
+				print(x)		
+				input()
 		# input()
 		# for v in tf.get_default_graph().get_collection("trainable_variables"):
 		# 	print (v)
