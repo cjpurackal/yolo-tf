@@ -56,7 +56,7 @@ with tf.Session() as sess:
 		inp = tf.get_default_graph().get_tensor_by_name('Placeholder:0')
 		out = tf.get_default_graph().get_tensor_by_name('conv2d_21/bias:0')
 		for v in tf.get_default_graph().get_collection("variables"):
-			if len(v.shape > 1):
+			if len(v.shape) > 1:
 				if v.shape[1] == 13:
 					print (v)
 		input()
@@ -65,7 +65,7 @@ with tf.Session() as sess:
 		# 		print (x)		
 		# input()
 		for v in tf.get_default_graph().get_collection("trainable_variables"):
-			if len(v.shape > 1):
+			if len(v.shape) > 1:
 				if v.shape[1] == 13:
 					print (v)
 		input()
