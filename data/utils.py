@@ -45,7 +45,7 @@ def manip_image_and_label(image_file, objs, config):
 
 def manip_image(image_file, config):
 	image = cv2.imread(image_file)
-	image = cv2.resize(image, (config["IMAGE_H"], config["IMAGE_W"]))
+	image = cv2.resize(image, (config["IMAGE_H"], config["IMAGE_W"], 3))
 	return image
 
 def _interval_overlap(interval_a, interval_b):
