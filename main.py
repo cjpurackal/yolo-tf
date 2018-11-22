@@ -20,7 +20,7 @@ if sys.argv[1] == "train" or "visualize":
 	dataset_path = sys.argv[2]
 	loader = Loader(dataset_path, config, "bbox")
 
-if sys.argv[1] == "train":
+if sys.argv[1] == "train" or "test":
 	arch = Arch(config)
 	preds = arch.darknet()
 	labels = tf.placeholder(tf.float32,[None,13,13,5,6])
