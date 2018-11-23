@@ -37,6 +37,7 @@ with tf.Session() as sess:
 	if sys.argv[1] == "train":
 		sess.run(tf.global_variables_initializer())
 		for i in range(config["EPOCH_SIZE"]):
+			print ("epoch number :".format(i))
 			for j in range(int(len(open(dataset_path+"train.txt","r").readlines())/config["BATCH_SIZE"])):	
 				print ("doing stuff on {}th batch".format(j))
 				images,labels_ = loader.next_batch(config["BATCH_SIZE"])
