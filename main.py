@@ -27,6 +27,7 @@ if sys.argv[1] == "train":
 	x = arch.getX()
 	saver = tf.train.Saver()
 	ls = losses.yolo_loss(preds, config, labels)
+	tf.summary.scalar("loss", ls)
 	train_step = tf.train.AdamOptimizer(1e-4).minimize(ls)
 
 if not os.path.exists(config["MODEL_SAVE_PATH"]):

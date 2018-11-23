@@ -6,7 +6,7 @@ class Arch:
 
 	def __init__(self,config):
 		self.config = config
-		self.x = tf.placeholder(dtype=tf.float32,shape=[None, config["IMAGE_W"], config["IMAGE_H"], 3])
+		self.x = tf.placeholder(dtype=tf.float32,shape=[None, config["IMAGE_W"], config["IMAGE_H"], 3], name="input")
 
 	def darknet(self):
 		conv1 = tf.layers.conv2d(self.x, filters=32, kernel_size=[3, 3], padding="same", activation=tf.nn.leaky_relu)
@@ -59,7 +59,7 @@ class Arch:
 		conv21 = tf.layers.conv2d(route, filters=1024, kernel_size=[3, 3], padding="same", activation=tf.nn.leaky_relu)
 		conv21 = tf.layers.batch_normalization(conv21)
 		predictions = tf.layers.conv2d(conv21, filters=self.config["BOX"] * (4 + 1 + self.config["CLASS"]), kernel_size=[1, 1], padding="same", activation=tf.nn.leaky_relu)	
-		predictions = tf.reshape(predictions, [self.config["BATCH_SIZE"], self.config["GRID_H"], self.config["GRID_W"], self.config["BOX"], 4 + 1 + self.config["CLASS"]])
+		predictions = tf.reshape(predictions, [self.config["BATCH_SIZE"], self.config["GRID_H"], self.config["GRID_W"], self.config["BOX"], 4 + 1 + self.config["CLASS"]], name="predictions")
 		return predictions
 
 
