@@ -48,6 +48,7 @@ with tf.Session() as sess:
 				ls_val = sess.run(ls, feed_dict={x:images,labels:labels_})
 				print ("loss : {}".format(ls_val))
 				# train_writer.add_summary(summary[0], j)
+			loader.set_batch_ptr(0)
 			if i%100 == 0:
 				save_path = saver.save(sess, config["MODEL_SAVE_PATH"]+"model_{}.ckpt".format(i))
 				print ("Model at {} epoch saved at {}".format(i, save_path))

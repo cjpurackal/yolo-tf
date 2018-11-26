@@ -73,5 +73,8 @@ class Loader:
 
 		return x_batch, y_batch
 
+	def set_batch_ptr(self, batch_ptr):
+		self.batch_ptr = batch_ptr
+		
 	def prev_batch():
 		print ("to do")
