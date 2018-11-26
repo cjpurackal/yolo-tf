@@ -26,7 +26,7 @@ class Loader:
 		image_files = open(train_txt_path, "r").readlines()[ptr:ptr+batch_size]
 		if print_img_files is True:
 			print (image_files)
-			input()
+			# input()
 		for img in image_files:
 			name = img.split("/")[-1][:-4]
 			# print (name)

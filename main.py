@@ -38,10 +38,10 @@ with tf.Session() as sess:
 		# train_writer = tf.summary.FileWriter( '/tmp/yolo-tf/train/train', sess.graph)
 		sess.run(tf.global_variables_initializer())
 		for i in range(config["EPOCH_SIZE"]):
-			print ("epoch number :".format(i))
+			print ("epoch number :{}".format(i))
 			for j in range(int(len(open(dataset_path+"train.txt","r").readlines())/config["BATCH_SIZE"])):	
 				print ("doing stuff on {}th batch".format(j))
-				images,labels_ = loader.next_batch(config["BATCH_SIZE"])
+				images,labels_ = loader.next_batch(config["BATCH_SIZE"], print_img_files=True)
 				# merged = tf.summary.merge_all()
 				# summary = sess.run([merged,train_step], feed_dict={x:images,labels:labels_})
 				summary = sess.run([train_step], feed_dict={x:images,labels:labels_})
