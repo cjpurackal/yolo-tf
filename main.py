@@ -35,7 +35,7 @@ if not os.path.exists(config["MODEL_SAVE_PATH"]):
 
 with tf.Session() as sess:
 	if sys.argv[1] == "train":
-		# train_writer = tf.summary.FileWriter( '/tmp/yolo-tf/train/train', sess.graph)
+		train_writer = tf.summary.FileWriter( '/tmp/yolo-tf/train/train', sess.graph)
 		sess.run(tf.global_variables_initializer())
 		for i in range(config["EPOCH_SIZE"]):
 			print ("epoch number :{}".format(i))
