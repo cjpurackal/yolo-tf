@@ -41,7 +41,7 @@ with tf.Session() as sess:
 			print ("epoch number :{}".format(i))
 			for j in range(int(len(open(dataset_path+"train.txt","r").readlines())/config["BATCH_SIZE"])):	
 				print ("doing stuff on {}th batch".format(j))
-				images,labels_ = loader.next_batch(config["BATCH_SIZE"], print_img_files=True)
+				images,labels_ = loader.next_batch(config["BATCH_SIZE"], print_img_files=False)
 				# merged = tf.summary.merge_all()
 				# summary = sess.run([merged,train_step], feed_dict={x:images,labels:labels_})
 				summary = sess.run([train_step], feed_dict={x:images,labels:labels_})
