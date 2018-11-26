@@ -36,7 +36,7 @@ class Loader:
 			lbl_all = [l+lbl[i-1] for i, l in enumerate(lbl) if i % 2 == 0]
 			objs = utils.convert_to_bbox(lbl_all)
 			image, objs = utils.manip_image_and_label(img.strip("\n"), objs, self.config)
-			print ("number of objects = %d" % len(objs))
+			# print ("number of objects = %d" % len(objs))
 			for obj in objs:						
 				class_vector = np.zeros(self.config["CLASS"])
 				class_vector[obj.cat] = 1
