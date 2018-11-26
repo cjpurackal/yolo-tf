@@ -35,19 +35,20 @@ if not os.path.exists(config["MODEL_SAVE_PATH"]):
 
 with tf.Session() as sess:
 	if sys.argv[1] == "train":
-		# train_writer = tf.summary.FileWriter( '/tmp/yolo-tf/train/train', sess.graph)
+		train_writer = tf.summary.FileWriter( '/tmp/yolo-tf/train/train', sess.graph)
+		merged = tf.summary.merge_all()
+
 		sess.run(tf.global_variables_initializer())
 		for i in range(config["EPOCH_SIZE"]):
 			print ("epoch number :{}".format(i))
 			for j in range(int(len(open(dataset_path+"train.txt","r").readlines())/config["BATCH_SIZE"])):	
 				print ("doing stuff on {}th batch".format(j))
 				images,labels_ = loader.next_batch(config["BATCH_SIZE"], print_img_files=False)
-				# merged = tf.summary.merge_all()
-				# summary = sess.run([merged,train_step], feed_dict={x:images,labels:labels_})
-				summary = sess.run([train_step], feed_dict={x:images,labels:labels_})
+				summary = sess.run([merged,train_step], feed_dict={x:images,labels:labels_})
+				# summary = sess.run([train_step], feed_dict={x:images,labels:labels_})
 				ls_val = sess.run(ls, feed_dict={x:images,labels:labels_})
 				print ("loss : {}".format(ls_val))
-				# train_writer.add_summary(summary[0], j)
+				train_writer.add_summary(summary[0], j)
 			loader.set_batch_ptr(0)
 			if i%100 == 0:
 				save_path = saver.save(sess, config["MODEL_SAVE_PATH"]+"model_{}.ckpt".format(i))
