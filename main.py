@@ -62,20 +62,18 @@ with tf.Session() as sess:
 		img = img.reshape([1, config["IMAGE_H"], config["IMAGE_W"], 3])
 		print (img.shape)
 		inp = tf.get_default_graph().get_operation_by_name('input').outputs
-		out = tf.get_default_graph().get_tensor_by_name('predictions:0').outputs
+		# out = tf.get_default_graph().get_tensor_by_name('predictions:0').outputs
 		# for v in tf.get_default_graph().get_collection("variables"):
 		# 	print (v)
 		# 	input()
-		# for x in tf.get_default_graph().get_operations():
-		# 	if x.type == "Placeholder":
-		# 		print(x)		
-		# 		input()
+		for x in tf.get_default_graph().get_operations():
+			if x.name == "predictions":
+				print(x)		
 		# input()
 		# for v in tf.get_default_graph().get_collection("trainable_variables"):
 		# 	print (v)
 		# 	input()
-		print (inp)
-		print (out)
+
 		# p = sess.run(out,feed_dict={inp:img})
 		# p = np.reshape(p,[1, config["GRID_H"], config["GRID_W"], config["BOX"], 4 + 1 + config["CLASS"]])
 		# print (p.shape)
