@@ -54,7 +54,7 @@ class Arch:
 		conv19 = tf.layers.batch_normalization(conv19)
 		conv20 = tf.layers.conv2d(conv19, filters=1024, kernel_size=[3, 3], padding="same", activation=tf.nn.leaky_relu)
 		conv20 = tf.layers.batch_normalization(conv20)
-		reorg = tf.reshape(conv13,[conv20.shape[0],self.config["GRID_W"],self.config["GRID_H"],2048])
+		reorg = tf.reshape(conv13,[-1, self.config["GRID_W"], self.config["GRID_H"], 2048])
 		route = tf.concat([reorg,conv20],3)
 		conv21 = tf.layers.conv2d(route, filters=1024, kernel_size=[3, 3], padding="same", activation=tf.nn.leaky_relu)
 		conv21 = tf.layers.batch_normalization(conv21)
