@@ -77,7 +77,7 @@ with tf.Session() as sess:
 		# 	input()
 
 		p = sess.run(out,feed_dict={inp:img})
-		p = np.reshape(p,[1, config["GRID_H"], config["GRID_W"], config["BOX"], 4 + 1 + config["CLASS"]])
+		# p = np.reshape(p,[1, config["GRID_H"], config["GRID_W"], config["BOX"], 4 + 1 + config["CLASS"]])
 		print (p.shape)
 	elif sys.argv[1] == "visualize":
 		train_txt_path = os.path.join("dataset","train.txt")
