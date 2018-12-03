@@ -67,7 +67,7 @@ with tf.Session() as sess:
 		# 	print (v)
 		# 	input()
 		for x in tf.get_default_graph().get_operations():
-			if x.name == "predictions":
+			if x.name == "input":
 				print(x)		
 		# input()
 		# for v in tf.get_default_graph().get_collection("trainable_variables"):
