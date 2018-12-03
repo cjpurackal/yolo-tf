@@ -61,19 +61,19 @@ with tf.Session() as sess:
 		print (type(img))
 		img = img.reshape([1, config["IMAGE_H"], config["IMAGE_W"], 3])
 		print (img.shape)
-		inp = tf.get_default_graph().get_operation_by_name('Placeholder:0').outputs[0]
-		out = tf.get_default_graph().get_operation_by_name('Placeholder_1:0').outputs[0]
-		# for v in tf.get_default_graph().get_collection("variables"):
-		# 	print (v)
-		# 	input()
-		# for x in tf.get_default_graph().get_operations():
-		# 	if x.type == "Placeholder":
-		# 		print(x)		
-		# 		input()
-		# input()
-		# for v in tf.get_default_graph().get_collection("trainable_variables"):
-		# 	print (v)
-		# 	input()
+		# inp = tf.get_default_graph().get_operation_by_name('Placeholder:0').outputs[0]
+		# out = tf.get_default_graph().get_operation_by_name('Placeholder_1:0').outputs[0]
+		for v in tf.get_default_graph().get_collection("variables"):
+			print (v)
+			input()
+		for x in tf.get_default_graph().get_operations():
+			if x.type == "Placeholder":
+				print(x)		
+				input()
+		input()
+		for v in tf.get_default_graph().get_collection("trainable_variables"):
+			print (v)
+			input()
 		p = sess.run(out,feed_dict={inp:img})
 		p = np.reshape(p,[1, config["GRID_H"], config["GRID_W"], config["BOX"], 4 + 1 + config["CLASS"]])
 		print (p.shape)
