@@ -81,7 +81,8 @@ with tf.Session() as sess:
 		# print (p.shape)
 	elif sys.argv[1] == "visualize":
 		train_txt_path = os.path.join("dataset","train.txt")
-		_, t= loader.next_batch(batch_size=1, ptr=0, train_txt_path=train_txt_path, print_img_files=True)	
+		_, t= loader.next_batch(batch_size=1, ptr=0, train_txt_path=train_txt_path, print_img_files=True)
+		print (t.shape)	
 		img = open(train_txt_path, "r").readlines()[0]
 		img = os.path.join(os.getcwd(),img)
 		img = img.strip("\n")
