@@ -62,7 +62,7 @@ with tf.Session() as sess:
 		img = img.reshape([1, config["IMAGE_H"], config["IMAGE_W"], 3])
 		print (img.shape)
 		inp = tf.get_default_graph().get_operation_by_name('input').outputs
-		out = tf.get_default_graph().get_operation_by_name('predictions:0').outputs
+		out = tf.get_default_graph().get_tensor_by_name('predictions:0').outputs
 		# for v in tf.get_default_graph().get_collection("variables"):
 		# 	print (v)
 		# 	input()
