@@ -61,8 +61,8 @@ with tf.Session() as sess:
 		print (type(img))
 		img = img.reshape([1, config["IMAGE_H"], config["IMAGE_W"], 3])
 		print (img.shape)
-		inp = tf.get_default_graph().get_operation_by_name('input').outputs[0]
-		out = tf.get_default_graph().get_operation_by_name('predictions').outputs[0]
+		inp = tf.get_default_graph().get_operation_by_name('input').outputs
+		out = tf.get_default_graph().get_operation_by_name('predictions').outputs
 		# for v in tf.get_default_graph().get_collection("variables"):
 		# 	print (v)
 		# 	input()
@@ -76,9 +76,9 @@ with tf.Session() as sess:
 		# 	input()
 		print (inp.shape)
 		print (out.shape)
-		p = sess.run(out,feed_dict={inp:img})
+		# p = sess.run(out,feed_dict={inp:img})
 		# p = np.reshape(p,[1, config["GRID_H"], config["GRID_W"], config["BOX"], 4 + 1 + config["CLASS"]])
-		print (p.shape)
+		# print (p.shape)
 	elif sys.argv[1] == "visualize":
 		train_txt_path = os.path.join("dataset","train.txt")
 		_, t= loader.next_batch(batch_size=1, ptr=0, train_txt_path=train_txt_path, print_img_files=True)	
