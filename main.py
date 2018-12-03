@@ -71,9 +71,9 @@ with tf.Session() as sess:
 		# 		print(x)		
 		# 		input()
 		# input()
-		# for v in tf.get_default_graph().get_collection("trainable_variables"):
-		# 	print (v)
-		# 	input()
+		for v in tf.get_default_graph().get_collection("trainable_variables"):
+			print (v)
+			input()
 		print (inp.shape)
 		print (out.shape)
 		# p = sess.run(out,feed_dict={inp:img})
