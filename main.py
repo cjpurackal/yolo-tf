@@ -78,8 +78,8 @@ with tf.Session() as sess:
 
 		p = sess.run(out,feed_dict={inp:img})
 		# p = np.reshape(p,[1, config["GRID_H"], config["GRID_W"], config["BOX"], 4 + 1 + config["CLASS"]])
-		print (p[0,:,:,:,4])
-		print (p[0,:,:,:,4].shape)
+		# print (p[0,:,:,:,4])
+		print (set(p[0,:,:,:,4].flatten()))
 	elif sys.argv[1] == "visualize":
 		train_txt_path = os.path.join("dataset","train.txt")
 		_, t= loader.next_batch(batch_size=1, ptr=0, train_txt_path=train_txt_path, print_img_files=True)
