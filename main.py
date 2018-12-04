@@ -54,8 +54,8 @@ with tf.Session() as sess:
 				save_path = saver.save(sess, config["MODEL_SAVE_PATH"]+"model_{}.ckpt".format(i))
 				print ("Model at {} epoch saved at {}".format(i, save_path))
 	elif sys.argv[1] == "test":
-		saver = tf.train.import_meta_graph(config["MODEL_SAVE_PATH"]+"model_900.ckpt.meta")
-		saver.restore(sess, config["MODEL_SAVE_PATH"]+"model_900.ckpt")
+		saver = tf.train.import_meta_graph(config["MODEL_SAVE_PATH"]+"model_100.ckpt.meta")
+		saver.restore(sess, config["MODEL_SAVE_PATH"]+"model_100.ckpt")
 		print ("model restored!")
 		img = data.utils.manip_image(sys.argv[2], config)
 		print (type(img))
@@ -78,7 +78,7 @@ with tf.Session() as sess:
 
 		p = sess.run(out,feed_dict={inp:img})
 		# p = np.reshape(p,[1, config["GRID_H"], config["GRID_W"], config["BOX"], 4 + 1 + config["CLASS"]])
-		print (p[0,:,:,:,4])
+		print (set(p[0,:,:,:,4]))
 	elif sys.argv[1] == "visualize":
 		train_txt_path = os.path.join("dataset","train.txt")
 		_, t= loader.next_batch(batch_size=1, ptr=0, train_txt_path=train_txt_path, print_img_files=True)
