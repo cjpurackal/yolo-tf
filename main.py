@@ -54,6 +54,7 @@ with tf.Session() as sess:
 				save_path = saver.save(sess, config["MODEL_SAVE_PATH"]+"model_{}.ckpt".format(i))
 				print ("Model at {} epoch saved at {}".format(i, save_path))
 	elif sys.argv[1] == "test":
+		sess.run(tf.global_variables_initializer())
 		layers = ['r', 'p', 'c']
 		saver = tf.train.import_meta_graph(config["MODEL_SAVE_PATH"]+"model_100.ckpt.meta")
 		saver.restore(sess, config["MODEL_SAVE_PATH"]+"model_100.ckpt")
