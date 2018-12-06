@@ -57,6 +57,7 @@ if sys.argv[1] == "train":
 elif sys.argv[1] == "test":
 	new_graph = tf.Graph()
 	with tf.Session(graph=new_graph) as sess:
+		tf.global_variables_initializer().run()
 		layers = ['r', 'p', 'c']
 		saver = tf.train.import_meta_graph(config["MODEL_SAVE_PATH"]+"model_100.ckpt.meta")
 		saver.restore(sess, tf.train.latest_checkpoint(config["MODEL_SAVE_PATH"]))
