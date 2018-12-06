@@ -71,7 +71,7 @@ elif sys.argv[1] == "test":
 		tf_cnnvis.activation_visualization(sess_graph_path = None, value_feed_dict = {inp:img}, input_tensor=out, layers=layers, path_logdir='/tmp/tf_cnnvis', path_outdir='/tmp/')
 		p = sess.run(out,feed_dict={inp:img})
 		# p = np.reshape(p,[1, config["GRID_H"], config["GRID_W"], config["BOX"], 4 + 1 + config["CLASS"]])
-		print (p[0,:,:,:,4])
+		print (set(p.flatten()))
 elif sys.argv[1] == "visualize":
 	train_txt_path = os.path.join("dataset","train.txt")
 	_, t= loader.next_batch(batch_size=1, ptr=0, train_txt_path=train_txt_path, print_img_files=True)
