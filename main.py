@@ -59,7 +59,7 @@ elif sys.argv[1] == "test":
 	with tf.Session(graph=new_graph) as sess:
 		layers = ['r', 'p', 'c']
 		saver = tf.train.import_meta_graph(config["MODEL_SAVE_PATH"]+"model_100.ckpt.meta")
-		saver.restore(sess, config["MODEL_SAVE_PATH"]+"model_100.ckpt")
+		saver.restore(sess, tf.train.latest_checkpoint(config["MODEL_SAVE_PATH"]))
 		print ("model restored!")
 		img = data.utils.manip_image(sys.argv[2], config)
 		img = img.reshape([1, config["IMAGE_H"], config["IMAGE_W"], 3])
