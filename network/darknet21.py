@@ -61,7 +61,6 @@ class Arch:
 		conv21 = tf.layers.batch_normalization(conv21)
 		predictions = tf.layers.conv2d(conv21, filters=self.config["BOX"] * (4 + 1 + self.config["CLASS"]), kernel_size=[1, 1], padding="same", activation=tf.nn.relu)	
 		predictions = tf.reshape(predictions, [-1, self.config["GRID_H"], self.config["GRID_W"], self.config["BOX"], 4 + 1 + self.config["CLASS"]], name="predictions")
-		tf.add_to_collection("predictions", predictions)
 		return predictions
 
 
