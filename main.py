@@ -65,7 +65,7 @@ elif sys.argv[1] == "test":
 		img = img.reshape([1, config["IMAGE_H"], config["IMAGE_W"], 3])
 		inp = tf.get_default_graph().get_tensor_by_name("input:0")
 		out = tf.get_default_graph().get_tensor_by_name("predictions:0")
-		tf_cnnvis.activation_visualization(sess_graph_path = sess, value_feed_dict = {inp:img}, input_tensor=out, layers=layers, path_logdir='/tmp/tf_cnnvis', path_outdir='/tmp/')
+		tf_cnnvis.activation_visualization(sess_graph_path = None, value_feed_dict = {inp:img}, input_tensor=out, layers=layers, path_logdir='/tmp/tf_cnnvis', path_outdir='/tmp/')
 		p = sess.run(out,feed_dict={inp:img})
 		# p = np.reshape(p,[1, config["GRID_H"], config["GRID_W"], config["BOX"], 4 + 1 + config["CLASS"]])
 		print (p[0,:,:,:,4])
