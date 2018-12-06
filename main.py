@@ -25,10 +25,11 @@ if sys.argv[1] == "train":
 	preds = arch.darknet()
 	labels = tf.placeholder(tf.float32,[None,13,13,5,6])
 	x = arch.getX()
-	saver = tf.train.Saver()
 	ls = losses.yolo_loss(preds, config, labels)
 	tf.summary.scalar("loss", ls)
 	train_step = tf.train.AdamOptimizer(1e-4).minimize(ls)
+	saver = tf.train.Saver()
+
 
 if not os.path.exists(config["MODEL_SAVE_PATH"]):
 		os.mkdir(config["MODEL_SAVE_PATH"])
@@ -59,8 +60,9 @@ elif sys.argv[1] == "test":
 	with tf.Session(graph=new_graph) as sess:
 		tf.global_variables_initializer().run()
 		layers = ['r', 'p', 'c']
-		saver = tf.train.import_meta_graph(config["MODEL_SAVE_PATH"]+"model_100.ckpt.meta")
-		saver.restore(sess, tf.train.latest_checkpoint(config["MODEL_SAVE_PATH"]))
+		saver = tf.train.import_meta_graph(config["MODEL_SAVE_PATH"]+"model_200.ckpt.meta")
+		checkpoint = tf.train.latest_checkpoint(config["MODEL_SAVE_PATH"])
+		saver.restore(sess, checkpoint)
 		print ("model restored!")
 		img = data.utils.manip_image(sys.argv[2], config)
 		img = img.reshape([1, config["IMAGE_H"], config["IMAGE_W"], 3])
