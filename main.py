@@ -16,7 +16,7 @@ import tf_cnnvis
 
 config = p.getParams()
 
-if sys.argv[1] == "train" or "visualize":
+if sys.argv[1] == "train" or sys.argv[1] == "visualize":
 	dataset_path = sys.argv[2]
 	loader = Loader(dataset_path, config, "bbox")
 
