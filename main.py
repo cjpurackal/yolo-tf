@@ -60,7 +60,7 @@ elif sys.argv[1] == "test":
 	with tf.Session(graph=new_graph) as sess:
 		tf.global_variables_initializer().run()
 		layers = ['r', 'p', 'c']
-		saver = tf.train.import_meta_graph(config["MODEL_SAVE_PATH"]+"model_200.ckpt.meta")
+		saver = tf.train.import_meta_graph(config["MODEL_SAVE_PATH"]+"model_900.ckpt.meta")
 		checkpoint = tf.train.latest_checkpoint(config["MODEL_SAVE_PATH"])
 		saver.restore(sess, checkpoint)
 		print ("model restored!")
@@ -72,8 +72,9 @@ elif sys.argv[1] == "test":
 		p = sess.run(out,feed_dict={inp:img})
 		# p = np.reshape(p,[1, config["GRID_H"], config["GRID_W"], config["BOX"], 4 + 1 + config["CLASS"]])
 		print (set(p[:,:,:,:,4].flatten()))
+		
 elif sys.argv[1] == "visualize":
-	train_txt_path = os.path.join("dataset","train.txt")
+	train_txt_path = os.path.join(sys.argv[2],"train.txt")
 	_, t= loader.next_batch(batch_size=1, ptr=0, train_txt_path=train_txt_path, print_img_files=True)
 	print (t.shape)	
 	img = open(train_txt_path, "r").readlines()[0]

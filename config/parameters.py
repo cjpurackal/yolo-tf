@@ -1,6 +1,6 @@
 import numpy as np
 
-LABELS = ['carrot']
+LABELS = ['peanut']
 IMAGE_H, IMAGE_W = 416, 416
 GRID_H,  GRID_W  = 13 , 13
 BOX              = 5
