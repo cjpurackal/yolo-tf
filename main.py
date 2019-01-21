@@ -60,11 +60,11 @@ elif sys.argv[1] == "test":
 	with tf.Session(graph=new_graph) as sess:
 		tf.global_variables_initializer().run()
 		layers = ['r', 'p', 'c']
-		saver = tf.train.import_meta_graph(config["MODEL_SAVE_PATH"]+"model_900.ckpt.meta")
+		saver = tf.train.import_meta_graph(config["MODEL_SAVE_PATH"]+"model_{}.ckpt.meta".format(sys.argv[2]))
 		checkpoint = tf.train.latest_checkpoint(config["MODEL_SAVE_PATH"])
 		saver.restore(sess, checkpoint)
 		print ("model restored!")
-		img = data.utils.manip_image(sys.argv[2], config)
+		img = data.utils.manip_image(sys.argv[3], config)
 		img = img.reshape([1, config["IMAGE_H"], config["IMAGE_W"], 3])
 		inp = tf.get_default_graph().get_tensor_by_name("input:0")
 		out = tf.get_default_graph().get_tensor_by_name("predictions:0")
