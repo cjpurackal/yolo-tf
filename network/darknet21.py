@@ -21,7 +21,7 @@ class Arch:
 		conv4 = tf.layers.conv2d(conv3, filters=64, kernel_size=[1, 1], padding="same", activation=tf.nn.leaky_relu)
 		conv4 = tf.layers.batch_normalization(conv4)
 		conv5 = tf.layers.conv2d(conv4, filters=128, kernel_size=[3, 3], padding="same", activation=tf.nn.leaky_relu)
-		conv5 = tf.layers.batch_normalization(conv5)
+		conv5 = tf.layers.batch_normalizati
 		maxpool3 = tf.nn.max_pool(conv5, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding="SAME")
 		conv6 = tf.layers.conv2d(maxpool3, filters=256, kernel_size=[3, 3], padding="same", activation=tf.nn.leaky_relu)
 		conv6 = tf.layers.batch_normalization(conv6)

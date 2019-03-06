@@ -15,6 +15,7 @@ class Loader:
 		
 	def next_batch(self, batch_size, train_txt_path=None, ptr=None, print_img_files=False):
 		x_batch = np.zeros([batch_size, self.config["IMAGE_W"], self.config["IMAGE_H"], 3], np.float32)
+		b_batch = np.zeros([batch_size, 1, 1, 1, self.config["TRUE_BOX_BUFFER"], 4], np.float32)
 		y_batch = np.zeros([batch_size, self.config["GRID_W"], self.config["GRID_H"], self.config["BOX"], 4+1+self.config["CLASS"]], np.float32)
 		max_iou = -1
 		best_prior = -1
@@ -37,6 +38,7 @@ class Loader:
 			objs = utils.convert_to_bbox(lbl_all)
 			image, objs = utils.manip_image_and_label(img.strip("\n"), objs, self.config)
 			# print ("number of objects = %d" % len(objs))
+			true_box_index = 0
 			for obj in objs:						
 				class_vector = np.zeros(self.config["CLASS"])
 				class_vector[obj.cat] = 1
@@ -68,10 +70,13 @@ class Loader:
 				y_batch[instance_count, grid_x, grid_y, best_prior, 4] = 1
 				y_batch[instance_count, grid_x, grid_y, best_prior, 5:5+self.config["CLASS"]] = class_vector
 				x_batch[instance_count] = image
+				b_batch[instance_count, 0, 0, 0, true_box_index] = bbox
+				true_box_index += 1
+				true_box_index = true_box_index % self.config["TRUE_BOX_BUFFER"]
 			instance_count += 1
 		self.batch_ptr += 1
 
-		return x_batch, y_batch
+		return x_batch, b_batch, y_batch
 
 	def set_batch_ptr(self, batch_ptr):
 		self.batch_ptr = batch_ptr

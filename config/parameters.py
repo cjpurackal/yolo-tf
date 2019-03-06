@@ -16,7 +16,7 @@ CLASS_SCALE      = 1.0
 BATCH_SIZE       = 5
 EPOCH_SIZE       = 1000
 WARM_UP_BATCHES  = 0
-TRUE_BOX_BUFFER  = 50
+TRUE_BOX_BUFFER  = 10
 MODEL_SAVE_PATH  = "/tmp/yolo-tf/"
 
 
