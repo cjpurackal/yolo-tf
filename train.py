@@ -44,6 +44,7 @@ with tf.Session() as sess:
                   print ("doing stuff on {}th batch".format(j))
                   images, b_batch, labels = loader.next_batch(config["BATCH_SIZE"], print_img_files=False)
                   summary = sess.run([train_step], feed_dict={inputs:images, b_batch_:b_batch, labels_:labels})
+                  loss = sess.run(loss, feed_dict={inputs:images, b_batch_:b_batch, labels_:labels})
               loader.set_batch_ptr(0)
 
 
