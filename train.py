@@ -1,3 +1,4 @@
+import sys
 import tensorflow as tf
 from tensorflow.keras.layers import Input, Conv2D, Lambda, Reshape
 from models import Darknet21
@@ -6,11 +7,12 @@ import config.parameters as p
 import data
 from data.loader import Loader
 
+
 config = p.getParams()
 image_width = config["IMAGE_W"]
 image_height = config["IMAGE_H"]
 max_box_per_image = config["BOX"]
-dataset_path = "dataset_carrot/"
+dataset_path = sys.argv[1]
 loader = Loader(dataset_path, config, "bbox")
 
 labels_ = tf.placeholder(tf.float32,[None, 13, 13, 5, 6])
