@@ -1,4 +1,4 @@
-1import sys
+import sys
 import tensorflow as tf
 from tensorflow.keras.layers import Input, Conv2D, Lambda, Reshape
 from models import Darknet21
