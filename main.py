@@ -1,5 +1,5 @@
 import tensorflow as tf
-# tf.enable_eager_execution()
+#tf.enable_eager_execution()
 
 from matplotlib import pyplot as plt
 import numpy as np

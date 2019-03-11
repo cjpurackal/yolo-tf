@@ -32,7 +32,7 @@ class Loader:
 			name = img.split("/")[-1][:-4]
 			# print (name)
 			cat = img.split("/")[-2]
-			lbl = open(os.path.join(self.data_path,"labels"+self.label_format,cat,name+"txt"),"r").readlines()
+			lbl = open(os.path.join(self.data_path,"labels_"+self.label_format,cat,name+"txt"),"r").readlines()
 			#needs to be changed accroding to the standard format
 			lbl_all = [l+lbl[i-1] for i, l in enumerate(lbl) if i % 2 == 0]
 			objs = utils.convert_to_bbox(lbl_all)
