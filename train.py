@@ -28,6 +28,7 @@ outputs = Conv2D(config["BOX"] * (4 + 1 + config["CLASS"]),
 				kernel_initializer='lecun_normal')(features)
 outputs = Reshape((config["GRID_H"], config["GRID_W"], config["BOX"], 4 + 1 + config["CLASS"]))(outputs)
 loss = yolo_loss.custom_loss(config, labels_, b_batch_, outputs)
+tf.summary.scalar("loss", loss)
 train_step = tf.train.AdamOptimizer(1e-4).minimize(loss)
 saver = tf.train.Saver()
 
@@ -38,14 +39,18 @@ saver = tf.train.Saver()
 # 	sess.run(loss, feed_dict={inputs:images, b_batch_:b_batch, labels_:labels})
 
 with tf.Session() as sess:
+  train_writer = tf.summary.FileWriter( '/tmp/yolo-tf/train/train', sess.graph)
+  merged = tf.summary.merge_all()
+  
   sess.run(tf.global_variables_initializer())
   for i in range(config["EPOCH_SIZE"]):
     print ("epoch number :{}".format(i))
     for j in range(int(len(open(dataset_path+"train.txt","r").readlines())/config["BATCH_SIZE"])):  
         print ("doing stuff on {}th batch".format(j))
         images, b_batch, labels = loader.next_batch(config["BATCH_SIZE"], print_img_files=False)
-        summary = sess.run([train_step], feed_dict={inputs:images, b_batch_:b_batch, labels_:labels})
+        summary = sess.run([merged, train_step], feed_dict={inputs:images, b_batch_:b_batch, labels_:labels})
         sess.run(loss, feed_dict={inputs:images, b_batch_:b_batch, labels_:labels})
+        train_writer.add_summary(summary[0], j)
     loader.set_batch_ptr(0)
     if i%100 == 0:
       save_path = saver.save(sess, config["MODEL_SAVE_PATH"]+"model_{}.ckpt".format(i))
