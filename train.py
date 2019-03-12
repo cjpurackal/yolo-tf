@@ -1,5 +1,6 @@
 import sys
 import tensorflow as tf
+import numpy as np
 from tensorflow.keras.layers import Input, Conv2D, Lambda, Reshape
 from models import Darknet21
 from loss import yolo_loss
@@ -49,7 +50,9 @@ with tf.Session() as sess:
         print ("doing stuff on {}th batch".format(j))
         images, b_batch, labels = loader.next_batch(config["BATCH_SIZE"], print_img_files=False)
         summary = sess.run([merged, train_step], feed_dict={inputs:images, b_batch_:b_batch, labels_:labels})
-        sess.run(loss, feed_dict={inputs:images, b_batch_:b_batch, labels_:labels})
+        l = sess.run(loss, feed_dict={inputs:images, b_batch_:b_batch, labels_:labels})
+        if np.isnan(l):
+          exit(0)
         train_writer.add_summary(summary[0], j)
     loader.set_batch_ptr(0)
     if i%100 == 0:
