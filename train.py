@@ -27,7 +27,7 @@ outputs = Conv2D(config["BOX"] * (4 + 1 + config["CLASS"]),
 				padding='same', 
 				name='DetectionLayer', 
 				kernel_initializer='lecun_normal')(features)
-outputs = Reshape((config["GRID_H"], config["GRID_W"], config["BOX"], 4 + 1 + config["CLASS"]))(outputs)
+outputs = Reshape((config["GRID_H"], config["GRID_W"], config["BOX"], 4 + 1 + config["CLASS"]), name="predictions")(outputs)
 loss = yolo_loss.custom_loss(config, labels_, b_batch_, outputs)
 tf.summary.scalar("loss", loss)
 train_step = tf.train.AdamOptimizer(1e-4).minimize(loss)
