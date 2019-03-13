@@ -22,5 +22,5 @@ with tf.Session() as sess:
 	print ("model restored")
 	img = data.utils.manip_image(test_img, config)
 	img = img.reshape([1, config["IMAGE_H"], config["IMAGE_W"], 3])
-	# inp = tf.get_default_graph().get_tensor_by_name("input:0")
+	inp = tf.get_default_graph().get_tensor_by_name("input:0")
 	# out = tf.get_default_graph().get_tensor_by_name("predictions:0")
