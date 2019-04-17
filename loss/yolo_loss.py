@@ -3,6 +3,7 @@ import numpy as np
 
 def custom_loss(config, y_true, true_boxes, y_pred, warmup_batches = 0, debug = True):
 
+
 	mask_shape = tf.shape(y_true)[:4]
 	class_wt = np.ones(config["CLASS"], dtype='float32')
 	cell_x = tf.to_float(tf.reshape(tf.tile(tf.range(config["GRID_W"]), [config["GRID_H"]]), (1, config["GRID_H"], config["GRID_W"], 1, 1)))
@@ -55,12 +56,12 @@ def custom_loss(config, y_true, true_boxes, y_pred, warmup_batches = 0, debug = 
 	intersect_wh    = tf.maximum(intersect_maxes - intersect_mins, 0.)
 	intersect_areas = intersect_wh[..., 0] * intersect_wh[..., 1]
 
+
 	true_areas = true_box_wh[..., 0] * true_box_wh[..., 1]
 	pred_areas = pred_box_wh[..., 0] * pred_box_wh[..., 1]
 
 	union_areas = pred_areas + true_areas - intersect_areas
 	iou_scores  = tf.truediv(intersect_areas, union_areas)
-
 	true_box_conf = iou_scores * y_true[..., 4]
 
 	### adjust class probabilities
@@ -74,21 +75,25 @@ def custom_loss(config, y_true, true_boxes, y_pred, warmup_batches = 0, debug = 
 
 	### confidence mask: penelize predictors + penalize boxes with low IOU
 	# penalize the confidence of the boxes, which have IOU with some ground truth box < 0.6
+
 	true_xy = true_boxes[..., 0:2]
 	true_wh = true_boxes[..., 2:4]
 
 	true_wh_half = true_wh / 2.
 	true_mins    = true_xy - true_wh_half
 	true_maxes   = true_xy + true_wh_half
-
 	pred_xy = tf.expand_dims(pred_box_xy, 4)
 	pred_wh = tf.expand_dims(pred_box_wh, 4)
+
+
 
 	pred_wh_half = pred_wh / 2.
 	pred_mins    = pred_xy - pred_wh_half
 	pred_maxes   = pred_xy + pred_wh_half    
 
 	intersect_mins  = tf.maximum(pred_mins,  true_mins)
+
+	
 	intersect_maxes = tf.minimum(pred_maxes, true_maxes)
 	intersect_wh    = tf.maximum(intersect_maxes - intersect_mins, 0.)
 	intersect_areas = intersect_wh[..., 0] * intersect_wh[..., 1]
