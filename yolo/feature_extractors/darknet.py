@@ -1,21 +1,17 @@
 import tensorflow as tf
-from keras.models import Model
+from tensorflow import keras
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, BatchNormalization, Input, LeakyReLU, Lambda, concatenate
 
-
-FULL_YOLO_BACKEND_PATH  = "full_yolo_backend.h5"   # should be hosted on a server
-
-class Darknet21:
-	def __init__(self, config):
-		self.input_image = tf.placeholder(dtype=tf.float32,shape=[None, config["IMAGE_W"], config["IMAGE_H"], 3], name="input")
-		tf.add_to_collection("input", self.input_image)
+class Darknet21():
+	def __init__(self, inputs):
+		self.inputs = inputs
 
 	def forward(self):
 		# the function to implement the orgnization layer (thanks to github.com/allanzelener/YAD2K)
 		def space_to_depth_x2(x):
 		    return tf.space_to_depth(x, block_size=2)
 		# Layer 1
-		x = Conv2D(32, (3,3), strides=(1,1), padding='same', name='conv_1', use_bias=False)(self.input_image)
+		x = Conv2D(32, (3,3), strides=(1,1), padding='same', name='conv_1', use_bias=False)(self.inputs)
 		x = BatchNormalization(name='norm_1')(x)
 		x = LeakyReLU(alpha=0.1)(x)
 		x = MaxPooling2D(pool_size=(2, 2))(x)
@@ -135,9 +131,3 @@ class Darknet21:
 		x = BatchNormalization(name='norm_22')(x)
 		x = LeakyReLU(alpha=0.1)(x)
 		return x
-
-    # def get_output_shape(self):
-    #     return self.feature_extractor.get_output_shape_at(-1)[1:3]
-	
-	def get_input(self):
-		return self.input_image

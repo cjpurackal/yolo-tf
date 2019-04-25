@@ -1,7 +1,7 @@
 import numpy as np
 import os
-from data.utils import Bbox
-import data.utils as utils
+from yolo.data.utils import Bbox
+from  yolo.data import utils
 
 class Loader:
 

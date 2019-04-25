@@ -1,0 +1,20 @@
+{
+	"name": "test_config",
+	"dataset_dir": "/foo/bar",
+	"model_save_dir":"/tmp/",
+	"input_size": 416,
+	"labels":["peanut"],
+	"grid_size":13,
+	"feature_extractor":"darknet21",
+	"boxes_per_cell":5,
+	"obj_thresh":0.3,
+	"nsm_thresh":0.3,	
+	"anchors":[0.57273, 0.677385, 1.87446, 2.06253, 3.33843, 5.47434, 7.88282, 3.52778, 9.77052, 9.16828],
+	"no_obj_scale":1.0,
+	"obj_scale":5.0,
+	"coord_scale":1.0,
+	"class_scale" :1.0,
+	"batch_size":5,
+	"epoch_size":1000,
+	"true_box_buffer":10	
+}
